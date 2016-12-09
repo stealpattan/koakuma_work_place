@@ -3,10 +3,8 @@ import java.io.*;
 public class read_csv{
 	static int num = 0;
 	public static void main(String[] arg){
-		if(arg != null){
-			int number_of_line = getFileLong("kougakukengai26.csv");
-			System.out.println(number_of_line);
-		}
+		int number_of_line = getFileLong("kougakukengai26.csv");
+		System.out.println(number_of_line);
 	}
 
 	public static int getFileLong(String f){
