@@ -1,10 +1,16 @@
 import java.io.*;
 
 public class read_csv{
-	static int num = 0;
+	static int num = 1;
 	public static void main(String[] arg){
-		int number_of_line = getFileLong("kougakukengai26.csv");
+		String file_name = "kougakukengai26.csv";
+		int number_of_line = getFileLong(file_name);
 		System.out.println(number_of_line);
+		String[] file_data = new String[number_of_line];
+		file_data = readCsv(file_name);
+		for (int i=0; i<100; i++) {
+			System.out.println(file_data[i]);
+		}
 	}
 
 	public static int getFileLong(String f){
@@ -20,7 +26,7 @@ public class read_csv{
 		return num;
 	}
 
-	private String[] readCsv(String f){
+	private static String[] readCsv(String f){
 		String[] datas = new String[num];
 		num = 0;
 		try{
