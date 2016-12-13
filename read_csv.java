@@ -26,12 +26,15 @@ public class read_csv{
 		return num;
 	}
 
-	private static String[] readCsv(String f){
+	private static String[] readCsv(String f){		
 		String[] datas = new String[num];
 		num = 0;
 		try{
+			File file = new File(f);
+			FileInputStream input = new FileInputStream(file);
+			InputStreamReader stream = new InputStreamReader(input,"SJIS");
+			BufferedReader br = new BufferedReader(stream);			
 			String data;
-			BufferedReader br = new BufferedReader(new FileReader(f));
 			while((data = br.readLine()) != null){
 				datas[num] = data;
 				num++;
