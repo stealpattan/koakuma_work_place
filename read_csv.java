@@ -3,7 +3,7 @@ import java.io.*;
 public class read_csv{
 	static int num = 1;
 	public static void main(String[] arg){
-		String file_name = "kougakukengai26.csv";
+		String file_name = "input_data.csv";
 		int number_of_line = getFileLong(file_name);
 		System.out.println(number_of_line);
 		String[] file_data = new String[number_of_line];
@@ -32,10 +32,12 @@ public class read_csv{
 		try{
 			File file = new File(f);
 			FileInputStream input = new FileInputStream(file);
-			InputStreamReader stream = new InputStreamReader(input,"SJIS");
+			InputStreamReader stream = new InputStreamReader(input,"UTF-8");
 			BufferedReader br = new BufferedReader(stream);			
 			String data;
 			while((data = br.readLine()) != null){
+				byte[] b = data.getBytes();
+				data = new String(b, "UTF-8");
 				datas[num] = data;
 				num++;
 			}
