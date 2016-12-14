@@ -6,10 +6,12 @@ public class read_csv{
 		String file_name = "input_data.csv";
 		int number_of_line = getFileLong(file_name);
 		System.out.println(number_of_line);
-		String[] file_data = new String[number_of_line];
+		String[][] file_data = new String[number_of_line][27];
 		file_data = readCsv(file_name);
-		for (int i=0; i<100; i++) {
-			System.out.println(file_data[i]);
+		for (int i=0; i<10; i++) {
+			for(int j=0; j<27; j++){
+				System.out.println("num=" + i + ": kind=" + j + ": data=" + file_data[i][j]);
+			}
 		}
 	}
 
@@ -26,8 +28,8 @@ public class read_csv{
 		return num;
 	}
 
-	private static String[] readCsv(String f){		
-		String[] datas = new String[num];
+	private static String[][] readCsv(String f){		
+		String[][] datas = new String[num][27];
 		num = 0;
 		try{
 			File file = new File(f);
@@ -38,7 +40,11 @@ public class read_csv{
 			while((data = br.readLine()) != null){
 				byte[] b = data.getBytes();
 				data = new String(b, "UTF-8");
-				datas[num] = data;
+				String[] split_data = data.split("," , -1);
+				for(int j=0;j<split_data.length;j++){
+					datas[num][j] = split_data[j];
+				}
+//				datas[num] = data;
 				num++;
 			}
 		}catch(IOException e){
