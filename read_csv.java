@@ -2,6 +2,7 @@ import java.io.*;
 
 public class read_csv{
 	static int num = 1;
+	String sql;
 	public static void main(String[] arg){
 		String file_name = "input_data.csv";
 		int number_of_line = getFileLong(file_name);
@@ -16,10 +17,44 @@ public class read_csv{
 		}
 		for (int i=0; i<=25; i++) {
 			System.out.println(
-				i + ":" + identify(i)+ ":" + file_data[3][i]
+				"colomun_number=" +i + ":識別結果=" + identify(i)+ ":就職者人数=" + file_data[3][i]
 			);
 		}
 		//above code is used for test
+		/* 
+			for loop...start here
+			INSERT INTO 
+			employer(`company_name`,`job_kind`,
+				`5_ago_machinie`,`5_ago`,`_intelligence`,`5_ago_information`,`5_ago_bio`,`5_ago_environment`,`5_ago_`
+				...
+				...
+				...
+				...
+			)VALUES(`file_data[hoge][0]`,`file_data[hoge][1]`,
+			``,``,``
+				...
+				...
+				...
+			);
+			for loop...end here
+		*/
+		/*	データベース構成のやつ
+			String[] hoe = new hoe[5];
+			for(int i=5;i>0;i--){
+				hoe[i] = "`" + i + "_ago_machinie`, 
+							`" + i + "_ago`,`_intelligence`,
+							`" + i + "_ago_information`,`5_ago_bio`,
+							`" + i + "_ago_environment`,`5_ago_pharmaceutical`,
+							`" + i + "_ago_nursing`";
+			}
+		*/
+		/*	就職者人数を取り出すやつ
+			String hoi = new hoi[5];
+			for(int j=5;j>0;j--){
+				hoi[j] = "`" + file_data[0][]
+						";
+			}
+		*/
 	}
 
 	public static int getFileLong(String f){
