@@ -51,7 +51,7 @@ public class read_csv{
 		/*	就職者人数を取り出すやつ
 			String hoi = new hoi[5];
 			for(int j=5;j>0;j--){
-				hoi[j] = "`" + file_data[0][]
+				hoi[j] = "`" + file_data[hoge][]
 						";
 			}
 		*/
@@ -130,7 +130,7 @@ public class read_csv{
 			st = identify(extra_num);
 		}
 		else{
-			System.out.println("Something error is happened");
+			System.out.println("Error is happened");
 		}
 		return st;
 	}
