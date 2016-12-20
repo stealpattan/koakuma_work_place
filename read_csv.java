@@ -15,11 +15,11 @@ public class read_csv{
 				System.out.println("num=" + i + ": kind=" + j + ": data=" + file_data[i][j]);
 			}
 		}
-		for (int i=0; i<=25; i++) {
-			System.out.println(
-				"colomun_number=" + i + ":識別結果=" + identify(i)+ ":就職者人数=" + file_data[3][i]
-			);
-		}
+		// for (int i=0; i<=25; i++) {
+		// 	System.out.println(
+		// 		"colomun_number=" + i + ":識別結果=" + identify(i)+ ":就職者人数=" + file_data[3][i]
+		// 	);
+		// }
 		//above code is used for test
 		/*
 			insert into employ(`company_name`,`job_kind`,`5_ago`,`4_ago`,`3_ago`,`2_ago`,`last_year`)
@@ -40,7 +40,7 @@ public class read_csv{
 	}
 
 	private static String[][] readCsv(String f){		
-		String[][] datas = new String[num][27];
+		String[][] datas = new String[num][];
 		num = 0;
 		try{
 			File file = new File(f);
@@ -63,43 +63,20 @@ public class read_csv{
 		return datas;
 	}
 
-	public static String identify(int num){
-		String st = "no_data";
-		int extra_num;
-		if(num <= 6){
-			switch(num){
-				case 0:
-					st = "企業名";
-					break;
-				case 1:
-					st = "職種";
-					break;
-				case 2:
-					st = "機械";
-					break;
-				case 3:
-					st = "知能";
-					break;
-				case 4:
-					st = "情報";
-					break;
-				case 5:
-					st = "生物";
-					break;
-				case 6:
-					st = "環境";
-					break;
-				default:
-					st = "エラー";
-					break;
-			}
+	public static String identify(String num){
+		switch(num){
+			case "機":
+			break;
+			case "知":
+			break;
+			case "情":
+			break;
+			case "生":
+			break;
+			case "電":
+			break;
+			case "環":
 		}
-		else if(num > 6){
-			
-		}
-		else{
-			System.out.println("Error is happened");
-		}
-		return st;
+		return num;
 	}
 }
