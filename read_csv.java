@@ -10,19 +10,39 @@ public class read_csv{
 		String[][] file_data = new String[number_of_line][27];
 		file_data = readCsv(file_name);
 		//below code is used for test 
-		for (int i=0; i<10; i++) {
-			for(int j=0; j<=25; j++){
-				System.out.println("num=" + i + ": kind=" + j + ": data=" + file_data[i][j]);
-			}
-		}
-		// for (int i=0; i<=25; i++) {
-		// 	System.out.println(
-		// 		"colomun_number=" + i + ":識別結果=" + identify(i)+ ":就職者人数=" + file_data[3][i]
-		// 	);
-		// }
-		//above code is used for test
+		System.out.println("INSERT INTO table(hogehoge) VALUES(" 
+								+ file_data[7][0] + "," 
+								+ file_data[7][1] + ","
+								+ "5_ago_String,4_ago_Strint,3_ago_String,2_ago_String,last_year_String;"
+								);
+		System.out.println("5_ago=" + identify(file_data[1][2]) + "_" + file_data[46][2] + ","
+							 + identify(file_data[1][3]) + "_" + file_data[46][3] + ","
+							 + identify(file_data[1][5]) + "_" + file_data[46][5]);
 		/*
-			insert into employ(`company_name`,`job_kind`,`5_ago`,`4_ago`,`3_ago`,`2_ago`,`last_year`)
+			Data base structure
+				id
+				company name
+				job kind
+				5
+					mechanical
+					intelligence
+					infomation
+					bio
+					environment
+				4
+				3
+				2
+				1
+				created
+				modified
+		*/
+		/*
+			insert into table(company_name, job_kind, 5_ago, 4_ago, 3_ago, 2_ago, last_year)
+						 values(company_name, job_kind, 5_ago_text, 4_ago_text, 3_ago_text, 2_ago_text, last_year_text);
+			sampe -> 5_ago_text -> mechanical_0,intelligence_0,information_0,bio_1,environment_0 <- String form.
+		*/
+		/*
+			insert into table()
 		*/
 	}
 
@@ -40,13 +60,14 @@ public class read_csv{
 	}
 
 	private static String[][] readCsv(String f){		
-		String[][] datas = new String[num][];
+		String[][] datas = new String[num][27];
 		num = 0;
 		try{
 			File file = new File(f);
 			FileInputStream input = new FileInputStream(file);
 			InputStreamReader stream = new InputStreamReader(input,"UTF-8");
-			BufferedReader br = new BufferedReader(stream);			
+			BufferedReader br = new BufferedReader(stream);
+
 			String data;
 			while((data = br.readLine()) != null){
 				byte[] b = data.getBytes();
@@ -63,20 +84,33 @@ public class read_csv{
 		return datas;
 	}
 
-	public static String identify(String num){
-		switch(num){
+	public static String identify(String depertment){
+		switch(depertment){
 			case "機":
-			break;
+				depertment = "mechanical";
+				break;
 			case "知":
-			break;
+				depertment = "intelligence";
+				break;
 			case "情":
-			break;
+				depertment = "information";
+				break;
 			case "生":
-			break;
-			case "電":
-			break;
+				depertment = "bio";
+				break;
 			case "環":
+				depertment = "environment";
+				break;
+			case "電":
+				depertment = "information";
+				break;
+			case "医":
+				depertment = "medical";
+				break;
+			case "看":
+				depertment = "nurse";
+				break;
 		}
-		return num;
+		return depertment;
 	}
 }
