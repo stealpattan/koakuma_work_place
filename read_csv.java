@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.*;
 
 public class read_csv{
 	static int num = 1;
@@ -10,14 +11,21 @@ public class read_csv{
 		String[][] file_data = new String[number_of_line][27];
 		file_data = readCsv(file_name);
 		//below code is used for test 
-		System.out.println("INSERT INTO table(hogehoge) VALUES(" 
-								+ file_data[7][0] + "," 
-								+ file_data[7][1] + ","
-								+ "5_ago_String,4_ago_Strint,3_ago_String,2_ago_String,last_year_String;"
-								);
-		System.out.println("5_ago=" + identify(file_data[1][2]) + "_" + file_data[46][2] + ","
-							 + identify(file_data[1][3]) + "_" + file_data[46][3] + ","
-							 + identify(file_data[1][5]) + "_" + file_data[46][5]);
+		System.out.println(Arrays.deepToString(file_data[1]));
+		System.out.println(Arrays.deepToString(file_data[2]));
+
+		System.out.println(file_data[2][0] + "," + file_data[2][1] + "," + identify(file_data[1][2]) + "_" + file_data[2][2]);
+		for(int i=0;i<27;i++){
+			if(i<2){
+				System.out.print(file_data[2][i] + ",");
+			}
+			else if(i<26){
+				System.out.print(identify(file_data[1][i]) + "_" + file_data[2][i] + ",");
+			}
+			else{
+				System.out.print(identify(file_data[1][i] + "_" + file_data[2][i]));
+			}
+		}
 		/*
 			Data base structure
 				id
