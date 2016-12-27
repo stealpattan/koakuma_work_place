@@ -6,41 +6,70 @@ public class read_csv{
 	String sql;
 	public static void main(String[] arg){
 		String file_name = "input_data.csv";
-		int number_of_line = getFileLong(file_name);
-		System.out.println(number_of_line);
-		String[][] file_data = new String[number_of_line][27];
+		int file_long = getFileLong(file_name);
+		String[][] file_data = new String[file_long][27];
+		String[] sql = new String[file_long];
+		//Get the all csv data;
 		file_data = readCsv(file_name);
+
+
 		//below code is used for test 
+		System.out.println(file_long);
 		System.out.println(Arrays.deepToString(file_data[1]));
 		System.out.println(Arrays.deepToString(file_data[2]));
 		
-		String out_data = "";
-		int y = 5;
-		for(int i=0;i<27;i++){
-			if(i<2){
-				//System.out.print(file_data[2][i] + ",");
-				out_data += file_data[2][i] + ",";
-			}
-			else if(i<26){
-				//System.out.print(identify(file_data[1][i]) + "_" + file_data[2][i] + ",");
-				switch(identify(file_data[1][i])){
-					case "machanical":
-						out_data += y + "_" + identify(file_data[1][i]) + "_" + file_data[2][i] + ",";
-					break;
-					case "environment":
-						out_data += y + "_" + identify(file_data[1][i]) + "_" + file_data[2][i] + ",";
-						y--;
-					break;
-					default:
-						out_data += y + "_" + identify(file_data[1][i]) + "_" + file_data[2][i] + ",";
-					break;
+		//array initialize;
+		String company_name = "";
+		String job_kind = "";
+		//variable initialize;
+		int y = 0;
+		for (int j=2; j<=file_long-2; j++) {
+			y = 4;
+			String out_data[] = {"","","","",""};
+			for(int i=0;i<27;i++){
+				if(i<2){
+					company_name = file_data[j][0];
+					job_kind = file_data[j][1];
 				}
-			}
-			else{
-				out_data += y + "_" + identify(file_data[1][i]) + "_" + file_data[2][i];
-			}
+				else if(i<26){
+					switch(identify(file_data[1][i])){
+						case "machanical":
+							out_data[y] = identify(file_data[1][i]) + "_" + file_data[j][i] + ":";
+						break;
+						case "environment":
+							out_data[y] += identify(file_data[1][i]) + "_" + file_data[j][i];
+							y--;
+						break;
+						default:
+							out_data[y] += identify(file_data[1][i]) + "_" + file_data[j][i] + ":";
+						break;
+					}
+				}
+				else{
+					out_data[y] += identify(file_data[1][i]) + "_" + file_data[j][i];
+				}
+				sql[j] = "INSERT INTO table(company_name,job_kind,5_ago,4_ago,3_ago,2_ago,last_year) VALUES(" + 
+							company_name + "," + 
+							job_kind + "," + 
+							out_data[4] + "," + 
+							out_data[3] + "," + 
+							out_data[2] + "," + 
+							out_data[1] + "," + 
+							out_data[0] + ")";
+			}	
 		}
-		System.out.println(out_data);
+		//show status;
+		// for (int i=0; i<96; i++) {
+		// 	System.out.println(sql[i]);
+		// }
+		//show status;
+		// System.out.println("company_name:" + company_name);
+		// System.out.println("job_kind:" + job_kind);
+		// for(int j=4;j>=0;j--){
+		// 	System.out.println(j + ":" + out_data[j]);
+		// }
+
+
 		/*
 			Data base structure
 				id
