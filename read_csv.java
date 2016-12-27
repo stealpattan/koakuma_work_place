@@ -65,32 +65,6 @@ public class read_csv{
 		System.out.println(file_long);
 		//Using BufferedWriter to output csv data;
 		writeCsv(sql,output_file_name);
-		/*
-			Data base structure
-				id
-				company name
-				job kind
-				5
-					mechanical
-					intelligence
-					infomation
-					bio
-					environment
-				4
-				3
-				2
-				1
-				created
-				modified
-		*/
-		/*
-			insert into table(company_name, job_kind, 5_ago, 4_ago, 3_ago, 2_ago, last_year)
-						 values(company_name, job_kind, 5_ago_text, 4_ago_text, 3_ago_text, 2_ago_text, last_year_text);
-			sampe -> 5_ago_text -> mechanical_0,intelligence_0,information_0,bio_1,environment_0 <- String form.
-		*/
-		/*
-			insert into table()
-		*/
 	}
 	public static int getFileLong(String f){
 		try{
