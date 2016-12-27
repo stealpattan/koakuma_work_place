@@ -13,19 +13,34 @@ public class read_csv{
 		//below code is used for test 
 		System.out.println(Arrays.deepToString(file_data[1]));
 		System.out.println(Arrays.deepToString(file_data[2]));
-
-		System.out.println(file_data[2][0] + "," + file_data[2][1] + "," + identify(file_data[1][2]) + "_" + file_data[2][2]);
+		
+		String out_data = "";
+		int y = 5;
 		for(int i=0;i<27;i++){
 			if(i<2){
-				System.out.print(file_data[2][i] + ",");
+				//System.out.print(file_data[2][i] + ",");
+				out_data += file_data[2][i] + ",";
 			}
 			else if(i<26){
-				System.out.print(identify(file_data[1][i]) + "_" + file_data[2][i] + ",");
+				//System.out.print(identify(file_data[1][i]) + "_" + file_data[2][i] + ",");
+				switch(identify(file_data[1][i])){
+					case "machanical":
+						out_data += y + "_" + identify(file_data[1][i]) + "_" + file_data[2][i] + ",";
+					break;
+					case "environment":
+						out_data += y + "_" + identify(file_data[1][i]) + "_" + file_data[2][i] + ",";
+						y--;
+					break;
+					default:
+						out_data += y + "_" + identify(file_data[1][i]) + "_" + file_data[2][i] + ",";
+					break;
+				}
 			}
 			else{
-				System.out.print(identify(file_data[1][i] + "_" + file_data[2][i]));
+				out_data += y + "_" + identify(file_data[1][i]) + "_" + file_data[2][i];
 			}
 		}
+		System.out.println(out_data);
 		/*
 			Data base structure
 				id
@@ -110,7 +125,7 @@ public class read_csv{
 				depertment = "environment";
 				break;
 			case "電":
-				depertment = "information";
+				depertment = "environment";
 				break;
 			case "医":
 				depertment = "medical";
