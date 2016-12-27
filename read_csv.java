@@ -2,16 +2,16 @@ import java.io.*;
 import java.util.*;
 
 public class read_csv{
-	static int num = 1;
-	String sql;
+	static int num = 0;
+	static int file_long;
 	public static void main(String[] arg){
-		String file_name = "input_data.csv";
-		int file_long = getFileLong(file_name);
+		String input_file_name = "input_data.csv";
+		String output_file_name = "out.sql";
+		file_long = getFileLong(input_file_name);
 		String[][] file_data = new String[file_long][27];
 		String[] sql = new String[file_long];
 		//Get the all csv data;
-		file_data = readCsv(file_name);
-
+		file_data = readCsv(input_file_name);
 
 		//below code is used for test 
 		System.out.println(file_long);
@@ -23,7 +23,7 @@ public class read_csv{
 		String job_kind = "";
 		//variable initialize;
 		int y = 0;
-		for (int j=2; j<=file_long-2; j++) {
+		for (int j=2; j<file_long; j++) {
 			y = 4;
 			String out_data[] = {"","","","",""};
 			for(int i=0;i<27;i++){
@@ -59,17 +59,12 @@ public class read_csv{
 			}	
 		}
 		//show status;
-		// for (int i=0; i<96; i++) {
-		// 	System.out.println(sql[i]);
-		// }
-		//show status;
-		// System.out.println("company_name:" + company_name);
-		// System.out.println("job_kind:" + job_kind);
-		// for(int j=4;j>=0;j--){
-		// 	System.out.println(j + ":" + out_data[j]);
-		// }
-
-
+		for (int i=0; i<file_long; i++) {
+			System.out.println(i + ":" + sql[i]);
+		}
+		System.out.println(file_long);
+		//Using BufferedWriter to output csv data;
+		writeCsv(sql,output_file_name);
 		/*
 			Data base structure
 				id
@@ -97,11 +92,11 @@ public class read_csv{
 			insert into table()
 		*/
 	}
-
 	public static int getFileLong(String f){
 		try{
 			BufferedReader br = new BufferedReader(new FileReader(f));
 			String data;
+			num = 0;
 			while((data = br.readLine()) != null){
 				num++;
 			}
@@ -135,7 +130,6 @@ public class read_csv{
 		}
 		return datas;
 	}
-
 	public static String identify(String depertment){
 		switch(depertment){
 			case "機":
@@ -165,4 +159,16 @@ public class read_csv{
 		}
 		return depertment;
 	}
+	public static void writeCsv(String s[], String f){
+		try{
+			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+			for (int i=2; i<file_long; i++) {
+				bw.write(s[i]);
+				bw.newLine();	
+			}
+			bw.close();
+		}catch(IOException e){
+			System.out.println("Cannot out put");
+		}
+	}	
 }
