@@ -48,14 +48,16 @@ public class read_csv{
 				else{
 					out_data[y] += identify(file_data[1][i]) + "_" + file_data[j][i];
 				}
-				sql[j] = "INSERT INTO table(company_name,job_kind,5_ago,4_ago,3_ago,2_ago,last_year) VALUES(" + 
-							company_name + "," + 
-							job_kind + "," + 
-							out_data[4] + "," + 
-							out_data[3] + "," + 
-							out_data[2] + "," + 
-							out_data[1] + "," + 
-							out_data[0] + ")";
+				sql[j] = "INSERT INTO `employee`(`company_name`,`job_kind`,`5_ago`,`4_ago`,`3_ago`,`2_ago`,`last_year`) VALUES("
+							+ "'" + company_name + "'" + ","
+							+ "'" + job_kind + "'" + ","
+							+ "'" + out_data[4] + "'" + ","
+							+ "'" + out_data[3] + "'" + "," 
+							+ "'" + out_data[2] + "'" + "," 
+							+ "'" + out_data[1] + "'" + "," 
+							+ "'" + out_data[0] + "'" + ","
+							+ "NOW()" +
+							")";
 			}	
 		}
 		//show status;
