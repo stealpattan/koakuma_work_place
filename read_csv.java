@@ -48,7 +48,7 @@ public class read_csv{
 				else{
 					out_data[y] += identify(file_data[1][i]) + "_" + file_data[j][i];
 				}
-				sql[j] = "INSERT INTO `employee`(`company_name`,`job_kind`,`5_ago`,`4_ago`,`3_ago`,`2_ago`,`last_year`) VALUES("
+				sql[j] = "INSERT INTO `employee`(`company_name`,`job_kind`,`5_ago`,`4_ago`,`3_ago`,`2_ago`,`last_year`,`created`) VALUES("
 							+ "'" + company_name + "'" + ","
 							+ "'" + job_kind + "'" + ","
 							+ "'" + out_data[4] + "'" + ","
