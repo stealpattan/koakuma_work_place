@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.*;
+import java.text.Normalizer;
 
 public class read_csv{
 	static int num = 0;
@@ -50,14 +51,14 @@ public class read_csv{
 				}
 				sql[j] = "INSERT INTO `employee`(`company_name`,`job_kind`,`5_ago`,`4_ago`,`3_ago`,`2_ago`,`last_year`,`created`) VALUES("
 							+ "'" + company_name + "'" + ","
-							+ "'" + job_kind + "'" + ","
+							+ "'" + Normalizer.normalize(job_kind,Normalizer.Form.NFKC) + "'" + ","
 							+ "'" + out_data[4] + "'" + ","
 							+ "'" + out_data[3] + "'" + "," 
 							+ "'" + out_data[2] + "'" + "," 
 							+ "'" + out_data[1] + "'" + "," 
 							+ "'" + out_data[0] + "'" + ","
 							+ "NOW()" +
-							")";
+							");";
 			}	
 		}
 		//show status;
